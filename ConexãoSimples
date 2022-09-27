@@ -1,0 +1,36 @@
+#include <ESP8266WiFi.h>
+
+//Declarar o SSID e Senha da minha rede....
+const char* ssid="SSID DA REDE";
+const char* password="senha da rede";
+
+void setup() {
+  //Inicializar a Serial.
+  Serial.begin(115200);
+  delay(100); // espera 0.1 segundo....
+  
+  //Realizar conexão com a rede WIFI
+  Serial.print("\nConectando a "); 
+  
+  //Escreve o texto para a serial
+  Serial.print(ssid);
+
+  WiFi.begin(ssid, password); 
+  // Passa o ssid e a senha para a biblioteca de conexão
+
+  while (WiFi.status() != WL_CONNECTED)  
+  //Enquanto o status for diferente de conectado
+  { 
+    delay(500); //INTERVALO DE 500 MILISEGUNDOS
+    Serial.print("\nVou tentar de novo..."); 
+    //Escreve o caractere da serial
+  }
+
+  Serial.print("\nConectado a rede sem fio "); 
+  //Escreve o texto para a serial
+  Serial.println(ssid);
+}
+
+void loop() {
+
+}
