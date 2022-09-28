@@ -10,7 +10,7 @@ WiFiServer server(80);
 void setup() {
   //Inicializar a Serial.
   Serial.begin(115200);
-  delay(100); // espera 0.1 segundo....
+  delay(200); // espera 0.2 segundo....
   
   //Realizar conexão com a rede WIFI
   Serial.print("\nConectando a "); 
@@ -22,7 +22,8 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED)  
   //ENQUANTO STATUS FOR DIFERENTE DE CONECTADO
   { 
-    delay(500); //INTERVALO DE 500 MILISEGUNDOS
+    delay(400); 
+    //INTERVALO DE 400 MILISEGUNDOS
     Serial.print("\nVou tentar de novo..."); 
     //ESCREVE O CARACTER NA SERIAL
   }
@@ -31,8 +32,8 @@ void setup() {
   //ESCREVE O TEXTO NA SERIAL
   Serial.println(ssid);
 
-  delay(2000); 
-  // espera 2 segundos
+  delay(1000); 
+  // espera 1 segundos
   server.begin(); 
   // inicializa o servidor web da plaquinha...
 
@@ -49,15 +50,15 @@ void loop() {
   if (!client) { 
   //SE NÃO EXISTIR CLIENTE CONECTADO, FAZ
     return; 
-    //REEXECUTA O PROCESSO ATÉ QUE ALGUM CLIENTE SE CONECTE AO SERVIDOR
+  //REEXECUTA O PROCESSO ATÉ QUE ALGUM CLIENTE SE CONECTE AO SERVIDOR
   }
 
   Serial.println("Novo cliente se conectou!"); 
   //ESCREVE O TEXTO NA SERIAL
   while(!client.available()){ 
   //ENQUANTO CLIENTE ESTIVER CONECTADO
-  delay(1); 
-  //INTERVALO DE 1 MILISEGUNDO
+  delay(2); 
+  //INTERVALO DE 2 MILISEGUNDO
   }
 
   client.println("HTTP/1.1 200 OK"); 
@@ -75,8 +76,8 @@ void loop() {
   //ESCREVE "Seja bem vindo!" NA PÁGINA
   client.println("</html>");
 
-  delay(1); 
-  //INTERVALO DE 1 MILISEGUNDO
+  delay(2); 
+  //INTERVALO DE 2 MILISEGUNDO
   Serial.println("Cliente desconectado"); 
   //ESCREVE O TEXTO NA SERIAL
   Serial.println("");
